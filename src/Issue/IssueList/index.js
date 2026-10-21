@@ -10,7 +10,6 @@ import FetchMore from '../../FetchMore';
 import {ButtonUnobtrusive} from '../../Button';
 
 import './style.css';
-import {GET_COMMENTS_OF_ISSUE} from '../../Comment/CommentList/queries';
 
 const ISSUE_STATES = {
     NONE: 'NONE',
