@@ -1,4 +1,5 @@
 import React from "react";
+import styles from './style.css';
 
 const TimeLineItem = (props) => {
     return (<li className={"timeline__item"}>
