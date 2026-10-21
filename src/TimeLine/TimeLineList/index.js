@@ -1,10 +1,10 @@
-import React, {Fragment} from "react";
-import TimeLineItem from "../TimeLineItem";
-import FetchMore from "../../FetchMore";
+import React, {Fragment} from 'react';
+import TimeLineItem from '../TimeLineItem';
+import FetchMore from '../../FetchMore';
 
 const getUpdateQuery = entry => (
     previousResult,
-    { fetchMoreResult },
+    {fetchMoreResult},
 ) => {
     if (!fetchMoreResult) {
         return previousResult;
@@ -28,18 +28,18 @@ const getUpdateQuery = entry => (
 
 
 const TimeLineList = ({
-                            repositories,
-                            loading,
-                            fetchMore,
-                            entry,
-                        }) => (
+                          repositories,
+                          loading,
+                          fetchMore,
+                          entry,
+                      }) => (
     <Fragment>
         <div className="timeline">
-        {repositories.edges.map(({ node }) => (
-            <div key={node.id}>
-                <TimeLineItem {...node} />
-            </div>
-        ))}
+            {repositories.edges.map(({node}) => (
+                <div key={node.id}>
+                    <TimeLineItem {...node} />
+                </div>
+            ))}
         </div>
         <FetchMore
             loading={loading}

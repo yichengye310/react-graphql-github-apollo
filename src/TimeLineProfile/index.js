@@ -1,11 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import {gql, useQuery} from '@apollo/client';
 
 import Loading from '../Loading';
 import ErrorMessage from '../Error';
-import TimeLineList from "../TimeLine";
-import REPOSITORY_FRAGMENT from "../TimeLine/fragments";
+import TimeLineList from '../TimeLine';
+import REPOSITORY_FRAGMENT from '../TimeLine/fragments';
 
 const GET_REPOSITORIES_OF_CURRENT_USER = gql`
   query($cursor: String) {
@@ -31,32 +30,30 @@ const GET_REPOSITORIES_OF_CURRENT_USER = gql`
   ${REPOSITORY_FRAGMENT}
 `;
 
-const TimeLineProfile = () => (
-  <Query
-    query={GET_REPOSITORIES_OF_CURRENT_USER}
-    notifyOnNetworkStatusChange={true}
-  >
-    {({ data, loading, error, fetchMore }) => {
-      const { viewer } = data;
+const TimeLineProfile = () => {
+    const {data, loading, error, fetchMore} = useQuery(GET_REPOSITORIES_OF_CURRENT_USER, {
+        notifyOnNetworkStatusChange: true,
+    });
 
-      if (loading && !viewer) {
-        return <Loading isCenter={true} />;
-      }
+    const {viewer} = data || {};
 
-      if (error) {
-        return <ErrorMessage error={error} />;
-      }
+    if (loading && !viewer) {
+        return <Loading isCenter={true}/>;
+    }
 
-      return (
+    if (error) {
+        return <ErrorMessage error={error}/>;
+    }
+
+    return (
         <TimeLineList
-          loading={loading}
-          repositories={viewer.repositories}
-          fetchMore={fetchMore}
-          entry={'viewer'}
+            loading={loading}
+            repositories={viewer.repositories}
+            fetchMore={fetchMore}
+            entry={'viewer'}
         />
-      );
-    }}
-  </Query>
-);
+    );
+
+};
 
 export default TimeLineProfile;

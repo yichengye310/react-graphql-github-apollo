@@ -1,10 +1,11 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import {useQuery} from '@apollo/client';
 
-import RepositoryList, { REPOSITORY_FRAGMENT } from '../Repository';
+import RepositoryList, {REPOSITORY_FRAGMENT} from '../Repository';
 import Loading from '../Loading';
 import ErrorMessage from '../Error';
+import {GET_ISSUES_OF_REPOSITORY} from '../Issue/IssueList/queries';
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   query($organizationName: String!, $cursor: String) {
@@ -25,36 +26,31 @@ const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   ${REPOSITORY_FRAGMENT}
 `;
 
-const Organization = ({ organizationName }) => (
-  <Query
-    query={GET_REPOSITORIES_OF_ORGANIZATION}
-    variables={{
-      organizationName,
-    }}
-    skip={organizationName === ''}
-    notifyOnNetworkStatusChange={true}
-  >
-    {({ data, loading, error, fetchMore }) => {
-      if (error) {
-        return <ErrorMessage error={error} />;
-      }
+const Organization = ({organizationName}) => {
+    const {loading, error, data, fetchMore} = useQuery(GET_REPOSITORIES_OF_ORGANIZATION, {
+        variables: {
+            organizationName
+        }, notifyOnNetworkStatusChange: true, skip: !organizationName
+    });
 
-      const { organization } = data;
+    if (error) {
+        return <ErrorMessage error={error}/>;
+    }
 
-      if (loading && !organization) {
-        return <Loading isCenter={true} />;
-      }
+    const {organization} = data || {};
 
-      return (
+    if (loading && !organization) {
+        return <Loading isCenter={true}/>;
+    }
+
+    return (
         <RepositoryList
-          loading={loading}
-          repositories={organization.repositories}
-          fetchMore={fetchMore}
-          entry={'organization'}
+            loading={loading}
+            repositories={organization.repositories}
+            fetchMore={fetchMore}
+            entry={'organization'}
         />
-      );
-    }}
-  </Query>
-);
+    );
+};
 
 export default Organization;
