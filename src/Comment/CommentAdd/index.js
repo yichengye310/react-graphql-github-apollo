@@ -1,4 +1,4 @@
-import React, {Component, useState} from 'react';
+import React, {useState} from 'react';
 import {useMutation} from '@apollo/client';
 
 import {ADD_COMMENT} from './mutations';
@@ -9,7 +9,7 @@ import ErrorMessage from '../../Error';
 
 const CommentAdd = ({issueId}) => {
     const [value, setValue] = useState('');
-    const [addComment, {data, loading, error}] = useMutation(ADD_COMMENT, {
+    const [addComment, {error}] = useMutation(ADD_COMMENT, {
         variables: {
             body: value,
             subjectId: issueId

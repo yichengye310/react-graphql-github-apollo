@@ -1,11 +1,10 @@
 import React from 'react';
-import gql from 'graphql-tag';
+import {gql} from '@apollo/client';
 import {useQuery} from '@apollo/client';
 
 import RepositoryList, {REPOSITORY_FRAGMENT} from '../Repository';
 import Loading from '../Loading';
 import ErrorMessage from '../Error';
-import {GET_ISSUES_OF_REPOSITORY} from '../Issue/IssueList/queries';
 
 const GET_REPOSITORIES_OF_ORGANIZATION = gql`
   query($organizationName: String!, $cursor: String) {

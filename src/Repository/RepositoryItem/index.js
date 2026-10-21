@@ -12,7 +12,6 @@ import {
     UNSTAR_REPOSITORY,
     WATCH_REPOSITORY,
 } from '../mutations';
-import {ADD_COMMENT} from '../../Comment/CommentAdd/mutations';
 
 const VIEWER_SUBSCRIPTIONS = {
     SUBSCRIBED: 'SUBSCRIBED',
@@ -119,7 +118,7 @@ const RepositoryItem = ({
                             viewerSubscription,
                             viewerHasStarred,
                         }) => {
-    const [updateSubscription, {}] = useMutation(WATCH_REPOSITORY, {
+    const [updateSubscription] = useMutation(WATCH_REPOSITORY, {
         variables: {
             id,
             viewerSubscription: isWatch(viewerSubscription)
@@ -140,7 +139,7 @@ const RepositoryItem = ({
         update: {updateWatch}
     });
 
-    const [addStar, {}] = useMutation(STAR_REPOSITORY, {
+    const [addStar] = useMutation(STAR_REPOSITORY, {
         variables: {id},
         optimisticResponse: {
             addStar: {
@@ -155,7 +154,7 @@ const RepositoryItem = ({
         update: {updateAddStar}
     });
 
-    const [removeStar, {}] = useMutation(STAR_REPOSITORY, {
+    const [removeStar] = useMutation(UNSTAR_REPOSITORY, {
         variables: {id},
         optimisticResponse: {
             removeStar: {
