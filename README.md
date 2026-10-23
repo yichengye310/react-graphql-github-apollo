@@ -6,10 +6,11 @@
 
 ## Features
 
-* React 16 with create-react-app
+* React 18 with create-react-app
 * Responsive
-* React Router 4
-* Apollo with GitHub GraphQL API
+* React Router 7
+* GraphQL 17
+* Apollo 4 with GitHub GraphQL API
   * Queries and Mutations with render props
   * Optimistic Updates
   * Pagination
