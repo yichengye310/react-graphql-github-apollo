@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import {useQuery} from '@apollo/client';
+import { useQuery } from "@apollo/client/react";
 
 import {GET_COMMENTS_OF_ISSUE} from './queries';
 import CommentItem from '../CommentItem';

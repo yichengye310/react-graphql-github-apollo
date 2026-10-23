@@ -1,6 +1,6 @@
 import React from 'react';
 import {gql} from '@apollo/client';
-import {useQuery} from '@apollo/client';
+import {useQuery} from '@apollo/client/react';
 
 import RepositoryList, {REPOSITORY_FRAGMENT} from '../Repository';
 import Loading from '../Loading';

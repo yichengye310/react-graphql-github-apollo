@@ -1,5 +1,5 @@
 import React from 'react';
-import {useMutation} from '@apollo/client';
+import { useMutation } from '@apollo/client/react';
 
 import REPOSITORY_FRAGMENT from '../fragments';
 import Link from '../../Link';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import * as routes from '../../constants/routes';
 import Button from '../../Button';
@@ -8,29 +8,30 @@ import Input from '../../Input';
 import './style.css';
 
 const Navigation = ({
-  location: { pathname },
   organizationName,
   onOrganizationSearch,
-}) => (
-  <header className="Navigation">
-    <div className="Navigation-link">
-      <Link to={routes.TIMELINE}>TimeLine</Link>
-    </div>
-    <div className="Navigation-link">
-      <Link to={routes.PROFILE}>Profile</Link>
-    </div>
-    <div className="Navigation-link">
-      <Link to={routes.ORGANIZATION}>Organization</Link>
-    </div>
+}) => {
+    const {pathname} = useLocation();
 
-    {pathname === routes.ORGANIZATION && (
-      <OrganizationSearch
-        organizationName={organizationName}
-        onOrganizationSearch={onOrganizationSearch}
-      />
-    )}
-  </header>
-);
+    return (<header className="Navigation">
+        <div className="Navigation-link">
+            <Link to={routes.TIMELINE}>TimeLine</Link>
+        </div>
+        <div className="Navigation-link">
+            <Link to={routes.PROFILE}>Profile</Link>
+        </div>
+        <div className="Navigation-link">
+            <Link to={routes.ORGANIZATION}>Organization</Link>
+        </div>
+
+        {pathname === routes.ORGANIZATION && (
+            <OrganizationSearch
+                organizationName={organizationName}
+                onOrganizationSearch={onOrganizationSearch}
+            />
+        )}
+    </header>);
+};
 
 class OrganizationSearch extends React.Component {
   state = {
@@ -68,4 +69,4 @@ class OrganizationSearch extends React.Component {
   }
 }
 
-export default withRouter(Navigation);
+export default Navigation;

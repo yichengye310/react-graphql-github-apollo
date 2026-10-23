@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useQuery, useApolloClient} from '@apollo/client';
+import {useQuery, useApolloClient} from '@apollo/client/react';
 
 import {GET_ISSUES_OF_REPOSITORY} from './queries';
 import IssueItem from '../IssueItem';
