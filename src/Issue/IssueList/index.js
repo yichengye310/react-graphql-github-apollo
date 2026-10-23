@@ -1,6 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useQuery, useApolloClient} from '@apollo/client';
-import {withState} from 'recompose';
 
 import {GET_ISSUES_OF_REPOSITORY} from './queries';
 import IssueItem from '../IssueItem';
@@ -75,56 +74,42 @@ const prefetchIssues = (
 const Issues = ({
                     repositoryOwner,
                     repositoryName,
-                    issueState,
-                    onChangeIssueState,
                 }) => {
+
+    const [issueState, onChangeIssueState] = useState(ISSUE_STATES.NONE);
+
     const {loading, error, data, fetchMore} = useQuery(GET_ISSUES_OF_REPOSITORY, {
         variables: {
             repositoryOwner,
             repositoryName,
             issueState,
-        }, notifyOnNetworkStatusChange: true,
+        }, notifyOnNetworkStatusChange: true, skip: !isShow(issueState),
     });
-    return (<div className="Issues">
-        <IssueFilter
-            repositoryOwner={repositoryOwner}
-            repositoryName={repositoryName}
-            issueState={issueState}
-            onChangeIssueState={onChangeIssueState}
-        />
 
-        {isShow(issueState) && (
-            <div>
-                {() => {
-                    if (error) {
-                        return <ErrorMessage error={error}/>;
-                    }
+    const {repository} = data || {};
 
-                    const {repository} = data;
-
-                    if (loading && !repository) {
-                        return <Loading/>;
-                    }
-
-                    if (!repository.issues.edges.length) {
-                        return <div className="IssueList">No issues ...</div>;
-                    }
-
-                    return (
-                        <IssueList
-                            issues={repository.issues}
-                            loading={loading}
-                            repositoryOwner={repositoryOwner}
-                            repositoryName={repositoryName}
-                            issueState={issueState}
-                            fetchMore={fetchMore}
-                        />
-                    );
-                }}
-            </div>
-        )}
-    </div>);
+    return (
+        <div className="Issues">
+            <IssueFilter
+                repositoryOwner={repositoryOwner}
+                repositoryName={repositoryName}
+                issueState={issueState}
+                onChangeIssueState={onChangeIssueState}
+            />
+            {isShow(issueState) && error && <ErrorMessage error={error}/>}
+            {isShow(issueState) && (loading && !repository) && <Loading/>}
+            {isShow(issueState) && !repository?.issues?.edges?.length && <div className="IssueList">No issues ...</div>}
+            {isShow(issueState) && <IssueList
+                issues={repository?.issues}
+                loading={loading}
+                repositoryOwner={repositoryOwner}
+                repositoryName={repositoryName}
+                issueState={issueState}
+                fetchMore={fetchMore}
+            />}
+        </div>);
 };
+
 
 const IssueFilter = ({
                          repositoryOwner,
@@ -157,22 +142,27 @@ const IssueList = ({
                        repositoryName,
                        issueState,
                        fetchMore,
-                   }) => (
-    <div className="IssueList">
-        {issues.edges.map(({node}) => (
+                   }) => {
+
+    const [isShowComments, onShowComments] = React.useState(false);
+
+    return (<div className="IssueList">
+        {issues?.edges?.map(({node}) => (
             <IssueItem
                 key={node.id}
                 issue={node}
                 repositoryOwner={repositoryOwner}
                 repositoryName={repositoryName}
+                isShowComments={isShowComments}
+                onShowComments={onShowComments}
             />
         ))}
 
         <FetchMore
             loading={loading}
-            hasNextPage={issues.pageInfo.hasNextPage}
+            hasNextPage={issues?.pageInfo?.hasNextPage}
             variables={{
-                cursor: issues.pageInfo.endCursor,
+                cursor: issues?.pageInfo?.endCursor,
                 repositoryOwner,
                 repositoryName,
                 issueState,
@@ -182,11 +172,7 @@ const IssueList = ({
         >
             Issues
         </FetchMore>
-    </div>
-);
+    </div>);
+};
 
-export default withState(
-    'issueState',
-    'onChangeIssueState',
-    ISSUE_STATES.NONE,
-)(Issues);
+export default Issues;
