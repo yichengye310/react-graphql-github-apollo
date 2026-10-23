@@ -9,30 +9,29 @@ const TimeLineItem = (props) => {
                     alignItems: 'center',
                 }}
     >
-        <div style={{
+        <div className={'item__wrapper'} style={{
             width: '350px',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
         }}>
-            <div style={{
-                marginLeft: '63px',
+            <div className={'item__line'} style={{
+                marginLeft: '68px',
                 height: 'fit-content',
                 display: 'flex',
                 flexDirection: 'row',
                 justifyItems: 'center',
-                justifySelf: 'flex-start',
                 alignItems: 'flex-start',
                 position: 'relative',
             }}>
-                <div style={{
+                <div className={'time'} style={{
                     color: 'rgb(250, 80, 80)',
                     padding: '4px 6px',
                     background: 'rgb(248,248,248)',
                     fontSize: '.66667em',
-                    width: '70px',
+                    width: '65px',
                 }}>{props.createdAt.split('T')[0]}</div>
-                <div style={{
+                <div className={'item__circle'} style={{
                     width: '12px',
                     height: '12px',
                     borderRadius: '50%',
@@ -45,28 +44,30 @@ const TimeLineItem = (props) => {
                     marginRight: '20px',
                 }}>
                 </div>
-                <div style={{
+                <div className={'item__right'} style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
                     width: '150px',
                 }}>
-                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                    <span style={{
-                        background: 'rgb(248, 248, 248)',
-                        padding: '6px 10px',
-                        borderRadius: '5px',
-                        fontWeight: 600,
-                        fontSize: '1.2vw'
-                    }}>
-                        {props.name}
-                    </span>
+                    <div className={'right__top'} style={{display: 'flex', flexDirection: 'row', alignItems: 'flex-start'}}>
+                        <div className={'top__name'} style={{
+                            background: 'rgb(248, 248, 248)',
+                            padding: '6px 10px',
+                            borderRadius: '5px',
+                            fontWeight: 600,
+                            fontSize: '1.2vw'
+                        }}>
+                            {props.name}
+                        </div>
                         {
                             props.isPrivate ? <></> :
-                                <a href={props.url} style={{marginLeft: '.75rem', fontSize: '1vw'}}>Click me!</a>
+                                <a className={'top__link'} href={props.url}
+                                   style={{marginLeft: '.75rem', fontSize: '1vw'}}>Click me!</a>
                         }
                     </div>
-                    <div style={{
+                    <div className={'right__bottom'} style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'flex-start',
