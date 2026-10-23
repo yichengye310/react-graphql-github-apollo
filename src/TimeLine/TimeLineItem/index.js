@@ -14,7 +14,7 @@ const TimeLineItem = (props) => {
                         </div>
                         {
                             props.isPrivate ? <></> :
-                                <a className={'top__link'} href={props.url}>Click me!</a>
+                                <div className={'top__link'}><a href={props.url}>Click me!</a></div>
                         }
                     </div>
                     <div className={'repo__bottom'}>

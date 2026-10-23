@@ -11,8 +11,15 @@ body {
 
 .timeline {
     position: relative;
-    margin-top: 110px;
     list-style-type: none;
+}
+
+@media only screen and (max-device-width: 480px) {
+    .timeline {
+        position: relative;
+        margin-top: 110px;
+        list-style-type: none;
+    }
 }
 
 .timeline:before {
@@ -96,7 +103,7 @@ body {
                 .repo__top {
                     display: flex;
                     flex-direction: row;
-                    align-items: flex-start;
+                    align-items: center;
 
                     .top__name {
                         background: rgb(248, 248, 248);
@@ -109,6 +116,7 @@ body {
                     .top__link {
                         margin-left: .75rem;
                         font-size: 0.6667em;
+                        width: 30px;
                     }
                 }
 
