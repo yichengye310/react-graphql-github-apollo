@@ -5,15 +5,13 @@ body {
 
     color: rgb(50, 50, 50);
     font-family: 'Open Sans', sans-serif;
-    font-size: 112.5%;
-    line-height: 1em;
 }
 
 /* ================ The TimeLine ================ */
 
 .timeline {
     position: relative;
-    margin: 0 auto;
+    margin-top: 110px;
     list-style-type: none;
 }
 
@@ -72,7 +70,7 @@ body {
                 color: rgb(250, 80, 80);
                 padding: 4px 6px;
                 background: rgb(248, 248, 248);
-                font-size: .66667em;
+                font-size: 0.6667em;
                 width: 65px;
             }
 
@@ -82,7 +80,7 @@ body {
                 border-radius: 50%;
                 border: solid 4px rgb(255, 80, 80);
                 background: white;
-                z-index: 9999;
+                z-index: 10;
                 margin-left: 20px;
                 margin-right: 20px;
                 margin-top: 2px;
@@ -105,12 +103,12 @@ body {
                         padding: 6px 10px;
                         border-radius: 5px;
                         font-weight: 600;
-                        font-size: 1.2vw;
+                        font-size: 0.6667em;
                     }
 
                     .top__link {
                         margin-left: .75rem;
-                        font-size: 1vw;
+                        font-size: 0.6667em;
                     }
                 }
 
