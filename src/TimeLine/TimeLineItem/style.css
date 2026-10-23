@@ -14,14 +14,13 @@ body {
 .timeline {
     position: relative;
     margin: 0 auto;
-    margin-top: 20px;
     list-style-type: none;
 }
 
 .timeline:before {
     position: absolute;
     left: 50%;
-    top: 0;
+    top: 20px;
     content: ' ';
     display: block;
     width: 6px;
