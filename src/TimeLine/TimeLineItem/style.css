@@ -65,11 +65,8 @@ body {
         align-items: flex-start;
 
         .line__item {
-            /*margin-left: 68px;*/
             display: flex;
             flex-direction: row;
-            /*justify-content: center;*/
-            /*align-items: flex-start;*/
             position: relative;
 
             .item__time {
