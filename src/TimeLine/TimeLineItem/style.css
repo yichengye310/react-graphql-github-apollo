@@ -60,25 +60,33 @@ body {
     align-items: center;
 
     .line__wrapper {
-        width: 350px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
 
         .line__item {
-            margin-left: 68px;
+            /*margin-left: 68px;*/
             display: flex;
             flex-direction: row;
-            justify-content: center;
-            align-items: flex-start;
+            /*justify-content: center;*/
+            /*align-items: flex-start;*/
             position: relative;
 
             .item__time {
-                color: rgb(250, 80, 80);
-                padding: 4px 6px;
-                background: rgb(248, 248, 248);
-                font-size: 0.6667em;
-                width: 65px;
+                width: 120px;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: flex-start;
+
+                .time {
+                    height: 12px;
+                    color: rgb(250, 80, 80);
+                    padding: 4px 6px;
+                    background: rgb(248, 248, 248);
+                    font-size: 0.6667em;
+                    width: 60px;
+                }
             }
 
             .item__circle {
@@ -94,49 +102,56 @@ body {
             }
 
             .item__repo {
+                width: 120px;
                 display: flex;
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
                 justify-content: flex-start;
-                width: 150px;
+                align-items: flex-start;
 
-                .repo__top {
-                    display: flex;
-                    flex-direction: row;
-                    align-items: center;
-
-                    .top__name {
-                        background: rgb(248, 248, 248);
-                        padding: 6px 10px;
-                        border-radius: 5px;
-                        font-weight: 600;
-                        font-size: 0.6667em;
-                    }
-
-                    .top__link {
-                        margin-left: .75rem;
-                        font-size: 0.6667em;
-                        width: 30px;
-                    }
-                }
-
-                .repo__bottom {
+                .repo {
                     display: flex;
                     flex-direction: column;
                     align-items: flex-start;
-                    font-size: 0.6667em;
+                    justify-content: flex-start;
 
-                    .bottom__language {
-                        margin-left: 10px;
-                        margin-top: 10px;
+                    .repo__top {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        .top__name {
+                            background: rgb(248, 248, 248);
+                            padding: 6px 10px;
+                            border-radius: 5px;
+                            font-weight: 600;
+                            font-size: 0.6667em;
+                        }
+
+                        .top__link {
+                            margin-left: .75rem;
+                            font-size: 0.6667em;
+                            width: 30px;
+                        }
                     }
 
-                    .bottom__desc {
-                        margin-left: 10px;
-                        width: 120px;
-                        margin-top: 10px;
-                        overflow-wrap: break-word;
-                        word-wrap: break-word;
+                    .repo__bottom {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        font-size: 0.6667em;
+
+                        .bottom__language {
+                            margin-left: 10px;
+                            margin-top: 10px;
+                        }
+
+                        .bottom__desc {
+                            margin-left: 10px;
+                            width: 120px;
+                            margin-top: 10px;
+                            overflow-wrap: break-word;
+                            word-wrap: break-word;
+                        }
                     }
                 }
             }
